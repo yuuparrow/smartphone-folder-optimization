@@ -1,5 +1,7 @@
 package com.yuuparrow.folderopt.data.scanner
 
+import android.system.ErrnoException
+import android.system.Os
 import com.yuuparrow.folderopt.data.model.DirectoryNode
 import com.yuuparrow.folderopt.data.model.FileEntry
 import java.io.File
@@ -7,6 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class StorageScanner {
+
+    private data class StatResult(val size: Long, val lastModified: Long, val lastAccessed: Long)
 
     suspend fun scan(
         rootPath: String,
@@ -40,9 +44,9 @@ class StorageScanner {
                         total += child.totalSize
                     }
                     entry.isFile -> {
-                        val size = entry.length()
-                        files += FileEntry(entry.name, entry.absolutePath, size, entry.lastModified())
-                        total += size
+                        val stat = statOrFallback(entry)
+                        files += FileEntry(entry.name, entry.absolutePath, stat.size, stat.lastModified, stat.lastAccessed)
+                        total += stat.size
                     }
                 }
             } catch (e: SecurityException) {
@@ -50,12 +54,25 @@ class StorageScanner {
             }
         }
 
+        val dirStat = statOrFallback(dir)
         return DirectoryNode(
             path = dir.absolutePath,
             name = dir.name.ifEmpty { dir.absolutePath },
             totalSize = total,
             children = children,
-            files = files
+            files = files,
+            lastModified = dirStat.lastModified,
+            lastAccessed = dirStat.lastAccessed
         )
+    }
+
+    private fun statOrFallback(file: File): StatResult {
+        return try {
+            val stat = Os.stat(file.absolutePath)
+            StatResult(stat.st_size, stat.st_mtime * 1000L, stat.st_atime * 1000L)
+        } catch (e: ErrnoException) {
+            val fallback = file.lastModified()
+            StatResult(file.length(), fallback, fallback)
+        }
     }
 }

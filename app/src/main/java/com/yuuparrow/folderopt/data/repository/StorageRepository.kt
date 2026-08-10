@@ -3,6 +3,7 @@ package com.yuuparrow.folderopt.data.repository
 import android.os.Environment
 import com.yuuparrow.folderopt.data.model.DirectoryNode
 import com.yuuparrow.folderopt.data.model.ScanUiState
+import com.yuuparrow.folderopt.data.model.SortOption
 import com.yuuparrow.folderopt.data.model.findNode
 import com.yuuparrow.folderopt.data.scanner.StorageScanner
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,6 +14,13 @@ class StorageRepository(private val scanner: StorageScanner) {
 
     private val _state = MutableStateFlow<ScanUiState>(ScanUiState.Idle)
     val state: StateFlow<ScanUiState> = _state.asStateFlow()
+
+    private val _sortOption = MutableStateFlow(SortOption())
+    val sortOption: StateFlow<SortOption> = _sortOption.asStateFlow()
+
+    fun setSortOption(option: SortOption) {
+        _sortOption.value = option
+    }
 
     val rootPath: String
         get() = Environment.getExternalStorageDirectory().absolutePath
