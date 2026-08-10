@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">フォルダ最適化</string>
+
+    <string name="permission_title">すべてのファイルへのアクセスが必要です</string>
+    <string name="permission_rationale">ストレージ内のフォルダサイズを計測し、重複ファイルを検出するには「すべてのファイルへのアクセス」権限が必要です。次の画面で許可してください。</string>
+    <string name="permission_grant_button">権限を許可する</string>
+
+    <string name="scan_preparing">スキャンを準備しています…</string>
+    <string name="scan_in_progress">スキャン中: %1$s</string>
+    <string name="folder_not_found">フォルダが見つかりませんでした</string>
+    <string name="folder_empty">このフォルダは空です</string>
+
+    <string name="nav_storage">ストレージ</string>
+    <string name="nav_duplicates">重複ファイル</string>
+
+    <string name="duplicates_scanning">スキャン中です…</string>
+    <string name="duplicates_scan_failed">スキャンに失敗しました</string>
+    <string name="duplicates_none_found">重複ファイルは見つかりませんでした</string>
+    <string name="duplicates_count">%1$d 件</string>
+    <string name="duplicates_wasted">≈%1$s 節約可能</string>
+    <string name="duplicates_delete_selected">選択した %1$d 件を削除</string>
+    <string name="duplicates_confirm_title">ファイルを削除しますか?</string>
+    <string name="duplicates_confirm_message">選択した %1$d 件のファイルを削除します。この操作は取り消せません。</string>
+
+    <string name="retry">再試行</string>
+    <string name="delete">削除</string>
+    <string name="cancel">キャンセル</string>
+</resources>
