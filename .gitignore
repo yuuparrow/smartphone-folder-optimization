@@ -1,0 +1,18 @@
+# Gradle
+.gradle/
+build/
+app/build/
+
+# Local configuration
+local.properties
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+
+# Log/OS
+*.log
+
+# NOTE: keystore/ is intentionally NOT ignored — the release signing
+# keystore is committed to this repository by design (see README.md).
