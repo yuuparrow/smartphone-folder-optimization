@@ -12,6 +12,7 @@ import com.yuuparrow.folderopt.permission.PermissionHelper
 import com.yuuparrow.folderopt.ui.duplicates.DuplicateGroupDetailScreen
 import com.yuuparrow.folderopt.ui.duplicates.DuplicateListScreen
 import com.yuuparrow.folderopt.ui.permission.PermissionScreen
+import com.yuuparrow.folderopt.ui.preview.MediaPreviewScreen
 import com.yuuparrow.folderopt.ui.storage.FolderScreen
 import androidx.compose.ui.platform.LocalContext
 
@@ -48,7 +49,18 @@ fun FolderOptNavHost(
                 onOpenFolder = { childPath -> navController.navigate(Routes.folder(childPath)) },
                 onBreadcrumbClick = { targetPath ->
                     navController.popBackStack(Routes.folder(targetPath), inclusive = false)
-                }
+                },
+                onOpenPreview = { previewPath -> navController.navigate(Routes.preview(previewPath)) }
+            )
+        }
+        composable(
+            route = Routes.PREVIEW_PATTERN,
+            arguments = listOf(navArgument("path") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val previewPath = backStackEntry.arguments?.getString("path").orEmpty()
+            MediaPreviewScreen(
+                path = previewPath,
+                onBack = { navController.popBackStack() }
             )
         }
         composable(Routes.DUPLICATES) {

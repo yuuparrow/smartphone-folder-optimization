@@ -23,6 +23,22 @@
     <string name="duplicates_confirm_title">ファイルを削除しますか?</string>
     <string name="duplicates_confirm_message">選択した %1$d 件のファイルを削除します。この操作は取り消せません。</string>
 
+    <string name="folder_sort_button">並び替え</string>
+    <string name="folder_sort_name">名前</string>
+    <string name="folder_sort_size">サイズ</string>
+    <string name="folder_sort_modified">更新日時</string>
+    <string name="folder_sort_accessed">アクセス日時</string>
+
+    <string name="folder_selected_count">%1$d 件選択中</string>
+    <string name="folder_delete_selected">選択した %1$d 件を削除</string>
+    <string name="folder_confirm_title">ファイルを削除しますか?</string>
+    <string name="folder_confirm_message">選択した %1$d 件のファイルを削除します。この操作は取り消せません。</string>
+    <string name="folder_delete_result">削除完了: %1$d件 / 失敗: %2$d件</string>
+
+    <string name="preview_back">戻る</string>
+    <string name="preview_play_external">外部アプリで再生</string>
+    <string name="preview_no_player">再生できるアプリが見つかりませんでした</string>
+
     <string name="retry">再試行</string>
     <string name="delete">削除</string>
     <string name="cancel">キャンセル</string>

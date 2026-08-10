@@ -5,7 +5,9 @@ data class DirectoryNode(
     val name: String,
     val totalSize: Long,
     val children: List<DirectoryNode>,
-    val files: List<FileEntry>
+    val files: List<FileEntry>,
+    val lastModified: Long = 0L,
+    val lastAccessed: Long = 0L
 )
 
 fun DirectoryNode.findNode(targetPath: String): DirectoryNode? {
